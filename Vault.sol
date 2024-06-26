@@ -44,11 +44,11 @@ contract Vault{
         emit Deposit(msg.sender, _token, _value);
     }
 
-    function withdrawETH(uint256 value) external payable {
+    function withdrawETH(uint256 value) external {
         withdraw(address(0),value);
     }
 
-    function withdraw(address _token, uint256 _value) public payable{
+    function withdraw(address _token, uint256 _value) public{
         require(balances[msg.sender][_token] >= _value, "Insufficient balance");
         if(_token == address(0)){
             (bool success, ) = msg.sender.call{value:_value}("");
