@@ -8,6 +8,10 @@ interface IWETH{
     function withdraw(uint256) external;
 }
 
+//  //0x0000000000000000000000000000000000000000 - ETH address
+    //0xfff9976782d46cc05630d1f6ebab18b2324d6b14 - WETH sepolia
+    
+
 contract Vault{
 
     event Deposit(address user, address token, uint256 amount);
