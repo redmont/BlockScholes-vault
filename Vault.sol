@@ -28,7 +28,10 @@ contract Vault{
         wETHAddr = _wETHAddr;
     }
 
-    function deposit(address _token, uint256 _value) external payable {
+    function depositETH(uint256 value) external payable {
+        deposit(address(0),value);
+    }
+    function deposit(address _token, uint256 _value) public payable {
         require(_value>0, "value should be greater than zero");
 
         if(_token == address(0)){
@@ -41,7 +44,11 @@ contract Vault{
         emit Deposit(msg.sender, _token, _value);
     }
 
-    function withdraw(address _token, uint256 _value) external payable{
+    function withdrawETH(uint256 value) external payable {
+        withdraw(address(0),value);
+    }
+
+    function withdraw(address _token, uint256 _value) public payable{
         require(balances[msg.sender][_token] >= _value, "Insufficient balance");
         if(_token == address(0)){
             (bool success, ) = msg.sender.call{value:_value}("");
